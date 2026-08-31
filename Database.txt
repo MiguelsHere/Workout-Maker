@@ -7,5 +7,5 @@ CREATE TABLE user(
     password_hash varchar(255) NOT NULL
 );
 
-CREATE USER 'admin_workout'@'localhost';
+CREATE USER 'admin_workout'@'localhost' IDENTIFIED BY '123';
 GRANT ALL PRIVILEGES ON workout_db.* TO 'admin_workout'@'localhost';
