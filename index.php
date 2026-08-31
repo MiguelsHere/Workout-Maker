@@ -3,7 +3,7 @@ include_once 'controllers/UserController.php';
 
 $userController = new UserController();
 
-$action = $_GET['action'];
+$action = $_GET['action'] ?? 'register';
 
 switch ($action) {
     default:
