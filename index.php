@@ -6,6 +6,7 @@ $userController = new UserController();
 $action = $_GET['action'];
 
 switch ($action) {
+    default:
     case 'register':
         $userController->register();
         break;
