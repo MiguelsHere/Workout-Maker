@@ -24,6 +24,8 @@ class UserController
                 header("Location: index.php?action=login");
                 exit;
             }
+            header("Location: index.php?action=register");
+            exit;
         }
 
         include 'views/user/user_register.php';
@@ -36,12 +38,11 @@ class UserController
             $this->user->password = (string) $_POST['password'];
 
             if ($this->user->login()) {
-                header("Location: index.php?action=login");
-                exit;
-            } else {
-                header("Location: index.php?action=login");
+                header("Location: index.php");
                 exit;
             }
+            header("Location: index.php?action=login");
+            exit;
         }
 
         include 'views/user/user_login.php';
