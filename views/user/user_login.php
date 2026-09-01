@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,11 @@
 <body>
 
     <nav>
-        <a href="index.php?action=home" title="Ir para pagina inicial"><img src="images/logo.png" alt="Workout Maker"></a> <a href="index.php?action=login.php" title="Ir para pagina de login">Entrar</a>/<a href="index.php?action=register.php" title="Ir para pagina de registo">Registar</a>
+        <a href="index.php?action=home" title="Ir para pagina inicial"><img src="images/logo.png"></a>
+        <p>
+            <a href="index.php?action=login" title="Ir para pagina de login">Entrar</a> /
+            <a href="index.php?action=register" title="Ir para pagina de registo">Registar</a>
+        </p>
     </nav>
 
     <main>
