@@ -4,7 +4,7 @@ class Database
 {
     private $host = "localhost";
     private $db_name = "workout_db";
-    private $username = "workout_admin";
+    private $username = "admin_workout";
     private $password = "123";
     public $conn;
 

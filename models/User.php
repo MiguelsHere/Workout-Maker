@@ -18,10 +18,10 @@ class User
 
         $hash = password_hash($this->password, PASSWORD_ARGON2ID);
 
-        $query = "INSERT INTO user(user_name, password_hash) VALUES (:username, :hash)";
+        $query = "INSERT INTO user(user_name, password_hash) VALUES (:username, :hash);";
         $stmt = $this->conn->prepare($query);
 
-        $stmt->bindParam(":user_name", $this->username);
+        $stmt->bindParam(":username", $this->username);
         $stmt->bindParam(":hash", $hash);
 
         $stmt->execute();
