@@ -32,7 +32,7 @@ class User
     public function login(): bool
     {
 
-        $query = "SELECT id_user, user_name, password_hash FROM user WHERE user_name = :username";
+        $query = "SELECT id_user, password_hash FROM user WHERE user_name = :username";
 
         $stmt = $this->conn->prepare($query);
 
@@ -40,8 +40,9 @@ class User
 
         $stmt->execute();
 
-        if ($stmt->rowCount()) {
-            $row = $stmt->fetch();
+        $row = $stmt->fetch();
+
+        if ($row) {
             if (password_verify($this->password, $row['password_hash'])) {
                 $_SESSION['id_user'] = $row['id_user'];
                 return true;
