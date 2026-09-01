@@ -3,18 +3,35 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="O Workout Maker dá lhe todos os essencias para criar workouts efetivos!">
+    <link rel="stylesheet" href="css/main_styles.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <title>Workout Maker: Registar</title>
 </head>
 
 <body>
-    <form action="index.php?action=register" method="post">
-        <label>Nome de Utilisador:</label><br>
-        <input type="text" name="username" minlength="1" maxlength="50" required><br>
 
-        <label>Palavra-Passe:</label><br>
-        <input type="password" name="password" minlength="1" maxlength="64" required><br>
+    <nav>
+        <a href="index.php?action=home" title="Ir para pagina inicial"><img src="images/logo.png" alt="Workout Maker"></a> <a href="index.php?action=login.php" title="Ir para pagina de login">Entrar</a>/<a href="index.php?action=register.php" title="Ir para pagina de registo">Registar</a>
+    </nav>
 
-        <button type="submit">Registar</button>
-    </form>
+    <main>
+        <form action="index.php?action=register" method="post">
+            <label>Nome de Utilisador:</label><br>
+            <input type="text" name="username" maxlength="50" autocomplete="username" required><br>
+
+            <label>Palavra-Passe:</label><br>
+            <input type="password" name="password" minlength="15" maxlength="64" autocomplete="new-password" required><br>
+
+            <button type="submit">Registar</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>criado por <a href="https://github.com/MiguelsHere" target="_blank">Miguel Monteiro</a></p>
+    </footer>
+
 </body>
 
 </html>
