@@ -28,4 +28,26 @@ class User
 
         return true;
     }
+
+    public function login(): bool
+    {
+
+        $query = "SELECT id_user, user_name, password_hash FROM user WHERE user_name = :username";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(":username", $this->username);
+
+        $stmt->execute();
+
+        if ($stmt->rowCount()) {
+            $row = $stmt->fetch();
+            if (password_verify($this->password, $row['password_hash'])) {
+                $_SESSION['id_user'] = $row['id_user'];
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
 }

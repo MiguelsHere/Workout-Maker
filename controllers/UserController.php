@@ -21,11 +21,29 @@ class UserController
             $this->user->password = (string) $_POST['password'];
 
             if ($this->user->register()) {
-                header("Location: index.php");
+                header("Location: index.php?action=login");
                 exit;
             }
         }
 
         include 'views/user/user_register.php';
+    }
+
+    public function login()
+    {
+        if ($_POST) {
+            $this->user->username = (string) $_POST['username'];
+            $this->user->password = (string) $_POST['password'];
+
+            if ($this->user->login()) {
+                header("Location: index.php?action=login");
+                exit;
+            } else {
+                header("Location: index.php?action=login");
+                exit;
+            }
+        }
+
+        include 'views/user/user_login.php';
     }
 }
