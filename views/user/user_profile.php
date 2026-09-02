@@ -17,7 +17,7 @@
     </nav>
 
     <main>
-        <form action="index.php?action=register" method="post">
+        <form action="index.php?action=updateInfo" method="post">
             <label>Descrição do Perfil:</label><br>
             <textarea name="userDescription" maxlength="10000"><br>
 
