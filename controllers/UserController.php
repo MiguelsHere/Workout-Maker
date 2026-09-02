@@ -50,24 +50,25 @@ class UserController
 
     public function update()
     {
-        if (empty($_SESSION['user_id'])) {
+        if ($_SESSION['user_id']) {
+            $this->user->userId = (int) $_SESSION['user_id'];
+
+            if ($_POST) {
+                $this->user->userDescription = $_POST['user_description'];
+                $this->user->birthDate = $_POST['birth_date'];
+                $this->user->heightCm = (float) $_POST['height_cm'];
+                $this->user->weightKg = (float) $_POST['weight_kg'];
+
+                if ($this->user->update()) {
+                    header("Location: index.php?action=update");
+                    exit;
+                }
+            }
+        } else {
             header("Location: index.php?action=login");
             exit;
         }
-        $this->user->userId = (int) $_SESSION['user_id'];
-
-        if ($_POST) {
-            $this->user->userDescription = $_POST['user_description'];
-            $this->user->birthDate = $_POST['birth_date'];
-            $this->user->heightCm = (float) $_POST['height_cm'];
-            $this->user->weightKg = (float) $_POST['weight_kg'];
-
-            if ($this->user->update()) {
-                header("Location: index.php?action=update");
-                exit;
-            }
-        }
-
+        
         include 'views/user/user_profile.php';
     }
 }
