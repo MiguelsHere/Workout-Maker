@@ -4,8 +4,8 @@ CREATE TABLE `user` (
   `password_hash` varchar(255) NOT NULL,
   `user_description` text,
   `birth_date` date,
-  `height_cm` decimal(5,2),
-  `weight_kg` decimal(5,2),
+  `height_cm` decimal(4,1) CHECK (height_cm > 0),
+  `weight_kg` decimal(5,2) CHECK (weight_kg > 0),
   `is_public` boolean NOT NULL DEFAULT 0
 );
 
@@ -20,7 +20,7 @@ CREATE TABLE `workout` (
   `workout_id` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   `workout_name` varchar(200) NOT NULL,
   `workout_description` text,
-  `time_min` smallint UNSIGNED,
+  `time_min` smallint UNSIGNED CHECK (time_min > 0),
   `is_public` boolean NOT NULL DEFAULT 0,
   `creator_id` bigint UNSIGNED NOT NULL
 );
