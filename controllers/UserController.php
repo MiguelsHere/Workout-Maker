@@ -57,7 +57,7 @@ class UserController
         $this->user->userId = (int) $_SESSION['user_id'];
 
         if ($_POST) {
-            $this->user->userDescription = (string) $_POST['user_escription'];
+            $this->user->userDescription = (string) $_POST['user_description'];
             $this->user->birthDate = (string) $_POST['birth_date'];
             $this->user->heightCm = (float) $_POST['height_cm'];
             $this->user->weightKg = (float) $_POST['weight_kg'];
