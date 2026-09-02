@@ -17,8 +17,8 @@ class UserController
     public function register()
     {
         if ($_POST) {
-            $this->user->userName = (string) $_POST['user_name'];
-            $this->user->password = (string) $_POST['password'];
+            $this->user->userName = $_POST['user_name'];
+            $this->user->password = $_POST['password'];
 
             if ($this->user->register()) {
                 header("Location: index.php?action=login");
@@ -34,8 +34,8 @@ class UserController
     public function login()
     {
         if ($_POST) {
-            $this->user->userName = (string) $_POST['user_name'];
-            $this->user->password = (string) $_POST['password'];
+            $this->user->userName = $_POST['user_name'];
+            $this->user->password = $_POST['password'];
 
             if ($this->user->login()) {
                 header("Location: index.php?action=update");
@@ -57,8 +57,8 @@ class UserController
         $this->user->userId = (int) $_SESSION['user_id'];
 
         if ($_POST) {
-            $this->user->userDescription = (string) $_POST['user_description'];
-            $this->user->birthDate = (string) $_POST['birth_date'];
+            $this->user->userDescription = $_POST['user_description'];
+            $this->user->birthDate = $_POST['birth_date'];
             $this->user->heightCm = (float) $_POST['height_cm'];
             $this->user->weightKg = (float) $_POST['weight_kg'];
 
