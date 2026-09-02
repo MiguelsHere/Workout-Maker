@@ -38,7 +38,7 @@ class UserController
             $this->user->password = (string) $_POST['password'];
 
             if ($this->user->login()) {
-                header("Location: index.php");
+                header("Location: index.php?action=updateInfo");
                 exit;
             }
             header("Location: index.php?action=login");
@@ -62,11 +62,11 @@ class UserController
             $this->user->weightKg = (float) $_POST['weightKg'];
 
             if ($this->user->updateInfo()) {
-                header("Location: index.php?action=update_info");
+                header("Location: index.php?action=updateInfo");
                 exit;
             }
         }
 
-        include 'views/user';
+        include 'views/user/user_profile.php';
     }
 }
