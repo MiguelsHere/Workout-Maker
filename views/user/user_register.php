@@ -23,7 +23,7 @@
     <main>
         <form action="index.php?action=register" method="post">
             <label>Nome de Utilisador:</label><br>
-            <input type="text" name="userName" maxlength="50" autocomplete="username" required><br>
+            <input type="text" name="user_name" maxlength="50" autocomplete="username" required><br>
 
             <label>Palavra-Passe:</label><br>
             <input type="password" name="password" minlength="15" maxlength="64" autocomplete="new-password" required><br>
