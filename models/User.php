@@ -57,7 +57,7 @@ class User
         return false;
     }
 
-    public function updateInfo(): bool
+    public function update(): bool
     {
         $query = "UPDATE user SET user_description, birth_date, height_cm, weight_kg) VALUES(:user_description, :birth_date, :height_cm, :weight_kg) WHERE user_id = :user_id;";
 
