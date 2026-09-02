@@ -20,7 +20,7 @@ CREATE TABLE `workout` (
   `workout_id` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   `workout_name` varchar(200) NOT NULL,
   `workout_description` text,
-  `time_min` smallint UNSIGNED CHECK (time_min > 0),
+  `time_min` smallint UNSIGNED, 
   `is_public` boolean NOT NULL DEFAULT 0,
   `creator_id` bigint UNSIGNED NOT NULL
 );
