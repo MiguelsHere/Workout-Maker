@@ -16,15 +16,20 @@ class UserController
 
     public function register()
     {
-        if ($_POST) {
-            $this->user->userName = $_POST['user_name'];
-            $this->user->password = $_POST['password'];
+        if (empty($_SESSION['user_id'])) {
+            if ($_POST) {
+                $this->user->userName = $_POST['user_name'];
+                $this->user->password = $_POST['password'];
 
-            if ($this->user->register()) {
-                header("Location: index.php?action=login");
+                if ($this->user->register()) {
+                    header("Location: index.php?action=login");
+                    exit;
+                }
+                header("Location: index.php?action=register");
                 exit;
             }
-            header("Location: index.php?action=register");
+        } else {
+            header("Location: index.php");
             exit;
         }
 
@@ -33,17 +38,23 @@ class UserController
 
     public function login()
     {
-        if ($_POST) {
-            $this->user->userName = $_POST['user_name'];
-            $this->user->password = $_POST['password'];
+        if (empty($_SESSION['user_id'])) {
+            if ($_POST) {
+                $this->user->userName = $_POST['user_name'];
+                $this->user->password = $_POST['password'];
 
-            if ($this->user->login()) {
-                header("Location: index.php?action=update");
+                if ($this->user->login()) {
+                    header("Location: index.php?action=update");
+                    exit;
+                }
+                header("Location: index.php?action=login");
                 exit;
             }
-            header("Location: index.php?action=login");
+        } else {
+            header("Location: index.php");
             exit;
         }
+
 
         include 'views/user/user_login.php';
     }
@@ -68,7 +79,7 @@ class UserController
             header("Location: index.php?action=login");
             exit;
         }
-        
+
         include 'views/user/user_profile.php';
     }
 }
