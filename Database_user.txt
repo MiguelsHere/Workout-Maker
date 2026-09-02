@@ -1,0 +1,3 @@
+
+CREATE USER 'admin_workout'@'localhost' IDENTIFIED BY '123';
+GRANT ALL PRIVILEGES ON workout_db.* TO 'admin_workout'@'localhost';
