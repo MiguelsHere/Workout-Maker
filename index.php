@@ -7,7 +7,7 @@ $userController = new UserController();
 $action = $_GET['action'] ?? 'register';
 
 switch ($action) {
-    case 'update_info':
+    case 'updateInfo':
         $userController->updateInfo();
         break;
     case 'login':

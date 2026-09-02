@@ -4,6 +4,7 @@ class User
 {
     private $conn;
 
+    public $userId;
     public $userName;
     public $password;
     public $userDescription;
@@ -66,7 +67,7 @@ class User
         $stmt->bindParam(":birth_date", $this->birthDate);
         $stmt->bindParam(":height_cm", $this->heightCm);
         $stmt->bindParam(":weight_kg", $this->weightKg);
-        $stmt->bindParam(":user_id", $_SESSION['user_id']);
+        $stmt->bindParam(":user_id", $this->userId);
 
         $stmt->execute();
 

@@ -54,6 +54,7 @@ class UserController
             header("Location: index.php?action=login");
             exit;
         }
+        $this->user->userId = (int) $_SESSION['user_id'];
 
         if ($_POST) {
             $this->user->userDescription = (string) $_POST['userDescription'];
