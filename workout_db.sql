@@ -1,62 +1,64 @@
 CREATE TABLE `user` (
-  `id_user` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `user_id` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   `user_name` varchar(50) UNIQUE NOT NULL,
   `password_hash` varchar(255) NOT NULL,
   `user_description` text,
   `birth_date` date,
-  `height_cm` decimal(4,1),
-  `weight_kg` decimal(4,1),
+  `height_cm` decimal(5,2),
+  `weight_kg` decimal(5,2),
   `is_public` boolean NOT NULL DEFAULT 0
 );
 
 CREATE TABLE `user_workout` (
-  `id_user_workout` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  `id_user` bigint UNSIGNED NOT NULL,
-  `id_workout` bigint UNSIGNED NOT NULL,
-  `feedback` enum(liked,disliked,neither) DEFAULT 'neither',
-  `is_creator` boolean NOT NULL DEFAULT 0
+  `user_workout_id` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `workout_id` bigint UNSIGNED NOT NULL,
+  `user_feedback` enum('liked','disliked','neither') NOT NULL DEFAULT 'neither'
 );
 
 CREATE TABLE `workout` (
-  `id_workout` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  `workout_name` tinytext NOT NULL,
+  `workout_id` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `workout_name` varchar(200) NOT NULL,
   `workout_description` text,
-  `time_min` tinyint(3) UNSIGNED,
-  `is_public` boolean NOT NULL DEFAULT 0
+  `time_min` smallint UNSIGNED,
+  `is_public` boolean NOT NULL DEFAULT 0,
+  `creator_id` bigint UNSIGNED NOT NULL
 );
 
 CREATE TABLE `workout_exercise` (
-  `id_workout_exercise` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  `id_workout` bigint UNSIGNED NOT NULL,
-  `id_exercise` bigint UNSIGNED NOT NULL
+  `workout_exercise_id` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `workout_id` bigint UNSIGNED NOT NULL,
+  `exercise_id` bigint UNSIGNED NOT NULL
 );
 
 CREATE TABLE `exercise` (
-  `id_exercise` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  `exercise_name` tinytext NOT NULL,
+  `exercise_id` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `exercise_name` varchar(200) NOT NULL,
   `exercise_description` text NOT NULL
 );
 
 CREATE TABLE `exercise_equipment` (
-  `id_exercise_equipment` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  `id_exercise` bigint UNSIGNED NOT NULL,
-  `id_equipment` bigint UNSIGNED NOT NULL
+  `exercise_equipment_id` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `exercise_id` bigint UNSIGNED NOT NULL,
+  `equipment_id` bigint UNSIGNED NOT NULL
 );
 
 CREATE TABLE `equipment` (
-  `id_equipment` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  `equipment_name` tinytext NOT NULL,
+  `equipment_id` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `equipment_name` varchar(200) NOT NULL,
   `equipment_description` text NOT NULL
 );
 
-ALTER TABLE `user_workout` ADD FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+ALTER TABLE `exercise_equipment` ADD FOREIGN KEY (`exercise_id`) REFERENCES `exercise` (`exercise_id`);
 
-ALTER TABLE `user_workout` ADD FOREIGN KEY (`id_workout`) REFERENCES `workout` (`id_workout`);
+ALTER TABLE `exercise_equipment` ADD FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`equipment_id`);
 
-ALTER TABLE `workout_exercise` ADD FOREIGN KEY (`id_workout`) REFERENCES `workout` (`id_workout`);
+ALTER TABLE `workout_exercise` ADD FOREIGN KEY (`exercise_id`) REFERENCES `exercise` (`exercise_id`);
 
-ALTER TABLE `workout_exercise` ADD FOREIGN KEY (`id_exercise`) REFERENCES `exercise` (`id_exercise`);
+ALTER TABLE `workout_exercise` ADD FOREIGN KEY (`workout_id`) REFERENCES `workout` (`workout_id`);
 
-ALTER TABLE `exercise_equipment` ADD FOREIGN KEY (`id_equipment`) REFERENCES `equipment` (`id_equipment`);
+ALTER TABLE `workout` ADD FOREIGN KEY (`creator_id`) REFERENCES `user` (`user_id`);
 
-ALTER TABLE `exercise_equipment` ADD FOREIGN KEY (`id_exercise`) REFERENCES `exercise` (`id_exercise`);
+ALTER TABLE `user_workout` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+
+ALTER TABLE `user_workout` ADD FOREIGN KEY (`workout_id`) REFERENCES `workout` (`workout_id`);
