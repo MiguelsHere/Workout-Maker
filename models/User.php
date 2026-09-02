@@ -36,7 +36,7 @@ class User
     public function login(): bool
     {
 
-        $query = "SELECT id_user, password_hash FROM user WHERE user_name = :username;";
+        $query = "SELECT user_id, password_hash FROM user WHERE user_name = :username;";
 
         $stmt = $this->conn->prepare($query);
 
