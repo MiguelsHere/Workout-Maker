@@ -4,8 +4,12 @@ class User
 {
     private $conn;
 
-    public $username;
+    public $userName;
     public $password;
+    public $userDescription;
+    public $birthDate;
+    public $heightCm;
+    public $weightKg;
 
     public function __construct($db)
     {
@@ -21,7 +25,7 @@ class User
         $query = "INSERT INTO user(user_name, password_hash) VALUES (:username, :hash);";
         $stmt = $this->conn->prepare($query);
 
-        $stmt->bindParam(":username", $this->username);
+        $stmt->bindParam(":username", $this->userName);
         $stmt->bindParam(":hash", $hash);
 
         $stmt->execute();
@@ -32,11 +36,11 @@ class User
     public function login(): bool
     {
 
-        $query = "SELECT id_user, password_hash FROM user WHERE user_name = :username";
+        $query = "SELECT id_user, password_hash FROM user WHERE user_name = :username;";
 
         $stmt = $this->conn->prepare($query);
 
-        $stmt->bindParam(":username", $this->username);
+        $stmt->bindParam(":username", $this->userName);
 
         $stmt->execute();
 
@@ -44,11 +48,29 @@ class User
 
         if ($row) {
             if (password_verify($this->password, $row['password_hash'])) {
-                $_SESSION['id_user'] = $row['id_user'];
+                $_SESSION['user_id'] = $row['user_id'];
                 return true;
             }
             return false;
         }
         return false;
+    }
+
+    public function updateInfo(): bool
+    {
+        $query = "UPDATE user SET user_description, birth_date, height_cm, weight_kg) VALUES(:user_description, :birth_date, :height_cm, :weight_kg) WHERE user_id = :user_id;";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(":user_description", $this->userDescription);
+        $stmt->bindParam(":birth_date", $this->birthDate);
+        $stmt->bindParam(":height_cm", $this->heightCm);
+        $stmt->bindParam(":weight_kg", $this->weightKg);
+        $stmt->bindParam(":user_id", $_SESSION['user_id']);
+
+        $stmt->execute();
+
+
+        return true;
     }
 }
