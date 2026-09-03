@@ -63,12 +63,12 @@ ALTER TABLE `workout_exercise` ADD FOREIGN KEY (`exercise_id`) REFERENCES `exerc
 
 ALTER TABLE `workout_exercise` ADD FOREIGN KEY (`workout_id`) REFERENCES `workout` (`workout_id`);
 
-ALTER TABLE `workout` ADD FOREIGN KEY (`creator_id`) REFERENCES `user` (`user_id`);
+ALTER TABLE `workout` ADD FOREIGN KEY (`creator_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE; 
 
-ALTER TABLE `user_workout` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+ALTER TABLE `user_workout` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE;
 
-ALTER TABLE `user_workout` ADD FOREIGN KEY (`workout_id`) REFERENCES `workout` (`workout_id`);
+ALTER TABLE `user_workout` ADD FOREIGN KEY (`workout_id`) REFERENCES `workout` (`workout_id`) ON DELETE CASCADE;
 
-ALTER TABLE `user_equipment` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+ALTER TABLE `user_equipment` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE;
 
 ALTER TABLE `user_equipment` ADD FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`equipment_id`);
