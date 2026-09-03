@@ -13,7 +13,7 @@
 <body>
 
     <nav>
-        <a href="index.php?action=home" title="Ir para pagina inicial"><img src="images/logo.png" alt='Workout Maker'></a>
+        <a href="index.php?action=home" title="Ir para pagina inicial"><img src="images/logo.png" alt='Workout Maker'><a>
         <p>
             <a href="index.php?action=login" title="Ir para pagina de login">Entrar</a> /
             <a href="index.php?action=register" title="Ir para pagina de registo">Registar</a>
@@ -23,10 +23,10 @@
     <main>
         <form action="index.php?action=register" method="post">
             <label>Nome de Utilisador:</label><br>
-            <input type="text" name="user_name" maxlength="50" autocomplete="username" required><br>
+            <input type="text" name="user_name" maxlength="50" autocomplete="username" required><br><br>
 
             <label>Palavra-Passe:</label><br>
-            <input type="password" name="password" minlength="15" maxlength="64" autocomplete="new-password" required><br>
+            <input type="password" name="password" minlength="15" maxlength="64" autocomplete="new-password" required><br><br>
 
             <button type="submit">Registar</button>
         </form>

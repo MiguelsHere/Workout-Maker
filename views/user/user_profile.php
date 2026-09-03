@@ -19,7 +19,7 @@
     <main>
         <form action="index.php?action=updateInfo" method="post">
             <label>Descrição do Perfil:</label><br>
-            <textarea name="user_description" maxlength="10000"><br>
+            <textarea name="user_description" maxlength="10000"></textarea><br>
 
             <label>Data de nascimento:</label><br>
             <input type="date" name="birth_date"><br>
@@ -28,7 +28,7 @@
             <input type="number" name="height_cm"><br>
 
             <label>Peso:</label><br>
-            <input type="number" name="weight_kg"><br>
+            <input type="number" name="weight_kg"><br><br>
 
             <button type="submit">Atualizar</button>
         </form>
