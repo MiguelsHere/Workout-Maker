@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt">
 
-<head></head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="O Workout Maker dá lhe todos os essencias para criar workouts efetivos!">
+    <link rel="stylesheet" href="css/main_styles.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <title>Workout Maker: Inicio</title>
+</head>
 
 <body>
 
@@ -14,7 +21,7 @@
     </nav>
 
     <main>
-        
+
     </main>
 
     <footer>
