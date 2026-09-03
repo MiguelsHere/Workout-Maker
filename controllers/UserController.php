@@ -87,4 +87,13 @@ class UserController
 
         include 'views/user/user_profile.php';
     }
+
+    public function signOut()
+    {
+        if ($_SESSION['user_id']) {
+            if ($this->user->signOut()) {
+                header("Location: index.php");
+            }
+        }
+    }
 }

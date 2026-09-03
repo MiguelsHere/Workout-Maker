@@ -49,6 +49,7 @@ class User
 
         if ($row) {
             if (password_verify($this->password, $row['password_hash'])) {
+                session_regenerate_id(true);
                 $_SESSION['user_id'] = $row['user_id'];
                 return true;
             }
@@ -71,6 +72,14 @@ class User
 
         $stmt->execute();
 
+
+        return true;
+    }
+
+    public function signOut(): bool
+    {
+        $_SESSION = [];
+        session_destroy();
 
         return true;
     }
