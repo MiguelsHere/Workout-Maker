@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="80" viewBox="0 0 320 80">
+  <!-- Solid Red Straight-edged background -->
+  <rect x="0" y="0" width="320" height="80" fill="#FF0000"/>
+
+  <!-- Dumbbell icon -->
+  <g transform="translate(20, 20)">
+    <!-- Left weight plate -->
+    <rect x="0" y="0" width="12" height="40" rx="4" fill="white"/>
+    <!-- Bar -->
+    <rect x="12" y="14" width="34" height="12" rx="3" fill="white"/>
+    <!-- Right weight plate -->
+    <rect x="46" y="0" width="12" height="40" rx="4" fill="white"/>
+  </g>
+
+  <!-- Text with heavy, blocky sans-serif font matching your image -->
+  <text x="90" y="48" font-family="'Arial Black', 'Franklin Gothic Heavy', 'Impact', sans-serif" font-size="20" font-weight="900" fill="white" letter-spacing="1">WORKOUT MAKER</text>
+</svg>
