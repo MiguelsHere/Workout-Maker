@@ -49,6 +49,12 @@ CREATE TABLE `equipment` (
   `equipment_description` text NOT NULL
 );
 
+CREATE TABLE `user_equipment` (
+  `user_equipment_id` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `equipment_id` bigint UNSIGNED NOT NULL
+);
+
 ALTER TABLE `exercise_equipment` ADD FOREIGN KEY (`exercise_id`) REFERENCES `exercise` (`exercise_id`);
 
 ALTER TABLE `exercise_equipment` ADD FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`equipment_id`);
@@ -62,3 +68,7 @@ ALTER TABLE `workout` ADD FOREIGN KEY (`creator_id`) REFERENCES `user` (`user_id
 ALTER TABLE `user_workout` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 
 ALTER TABLE `user_workout` ADD FOREIGN KEY (`workout_id`) REFERENCES `workout` (`workout_id`);
+
+ALTER TABLE `user_equipment` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+
+ALTER TABLE `user_equipment` ADD FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`equipment_id`);

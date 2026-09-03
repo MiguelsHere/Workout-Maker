@@ -22,7 +22,7 @@
             <textarea name="user_description" maxlength="10000"></textarea><br>
 
             <label>Data de nascimento:</label><br>
-            <input type="date" name="birth_date"><br>
+            <input type="date" name="birth_date" autocomplete="bday"><br>
 
             <label>Altura:</label><br>
             <input type="number" name="height_cm"><br>
