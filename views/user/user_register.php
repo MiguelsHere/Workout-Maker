@@ -14,10 +14,9 @@
 
     <nav>
         <a href="index.php?action=home" title="Ir para pagina inicial"><img src="images/logo.png" alt='Workout Maker'></a>
-        <p>
-            <a href="index.php?action=login" title="Ir para pagina de login">Entrar</a> /
-            <a href="index.php?action=register" title="Ir para pagina de registo">Registar</a>
-        </p>
+        <a href="index.php?action=login" title="Ir para pagina de login">Entrar</a>
+        <span>/</span>
+        <a href="index.php?action=register" title="Ir para pagina de registo">Registar</a>
     </nav>
 
     <main>
