@@ -13,7 +13,7 @@
 <body>
 
     <nav>
-        <a href="index.php?action=home" title="Ir para pagina inicial"><img src="images/logo.png" alt='Workout Maker'><a>
+        <a href="index.php?action=home" title="Ir para pagina inicial"><img src="images/logo.png" alt='Workout Maker'></a>
     </nav>
 
     <main>

@@ -14,6 +14,11 @@ class UserController
         $this->user = new User($this->db);
     }
 
+    public function home()
+    {
+        include_once 'views/home.php';
+    }
+
     public function register()
     {
         if (empty($_SESSION['user_id'])) {

@@ -4,17 +4,21 @@ include_once 'controllers/UserController.php';
 
 $userController = new UserController();
 
-$action = $_GET['action'] ?? 'register';
+$action = $_GET['action'] ?? 'home';
 
 switch ($action) {
-    case 'update':
-        $userController->update();
-        break;
+
     case 'login':
         $userController->login();
         break;
-    default:
     case 'register':
         $userController->register();
+        break;
+    case 'update':
+        $userController->update();
+        break;
+    default:
+    case 'home':
+        $userController->home();
         break;
 }
