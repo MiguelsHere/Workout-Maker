@@ -1,13 +1,18 @@
 <?php
 session_start();
+
 include_once 'controllers/UserController.php';
+include_once 'controllers/WorkoutController.php';
 
 $userController = new UserController();
+$workoutController = new WorkoutController();
 
 $action = $_GET['action'] ?? 'home';
 
 switch ($action) {
-
+    case 'create':
+        $workoutController->create();
+        break;
     case 'login':
         $userController->login();
         break;
