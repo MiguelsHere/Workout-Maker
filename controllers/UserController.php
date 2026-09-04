@@ -88,6 +88,28 @@ class UserController
         include 'views/user/user_profile.php';
     }
 
+    public function newPassword()
+    {
+
+        if ($_SESSION['user_id']) {
+            $this->user->userId = (int) $_SESSION['user_id'];
+
+            if ($_POST['new_password']) {
+                $this->user->newPassword = $_POST['new_password'];
+
+                if ($this->user->newPassword()) {
+                    header("Location: index.php?action=new-password");
+                    exit;
+                }
+            }
+        } else {
+            header("Location: index.php?action=login");
+            exit;
+        }
+
+        include 'views/user/user_cha.php';
+    }
+
     public function signOut()
     {
         if ($_SESSION['user_id']) {

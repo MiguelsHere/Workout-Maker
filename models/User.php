@@ -12,6 +12,8 @@ class User
     public $heightCm;
     public $weightKg;
 
+    public $newPassword;
+
     public function __construct($db)
     {
         $this->conn = $db;
@@ -72,8 +74,37 @@ class User
 
         $stmt->execute();
 
-
         return true;
+    }
+
+    public function newPassword(): bool
+    {
+        $query = "SELECT password_hash FROM user WHERE user_id = :user_id";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(":user_id", $this->userId);
+
+        $stmt->execute();
+
+        $row = $stmt->fetch();
+
+        if (password_verify($this->password, $row['password_hash'])) {
+
+            $hash = password_hash($this->newPassword, PASSWORD_ARGON2ID);
+
+            $query = "UPDATE TABLE user SET password_hash = :new_password WHERE user_id = :user_id";
+
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindParam(":new_password", $hash);
+            $stmt->bindParam(":user_id", $this->userId);
+
+            $stmt->execute();
+
+            return true;
+        }
+        return false;
     }
 
     public function signOut(): bool

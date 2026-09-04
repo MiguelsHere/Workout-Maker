@@ -13,6 +13,9 @@ switch ($action) {
     case 'create':
         $workoutController->create();
         break;
+    case 'new-password':
+        $userController->newPassword();
+        break;
     case 'login':
         $userController->login();
         break;
