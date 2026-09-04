@@ -108,7 +108,7 @@ class UserController
             exit;
         }
 
-        include 'views/user/user_cha.php';
+        include 'views/user/user_password.php';
     }
 
     public function signOut()
