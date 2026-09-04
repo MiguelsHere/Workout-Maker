@@ -94,7 +94,8 @@ class UserController
         if ($_SESSION['user_id']) {
             $this->user->userId = (int) $_SESSION['user_id'];
 
-            if ($_POST['new_password']) {
+            if ($_POST) {
+                $this->user->password = $_POST['password'];
                 $this->user->newPassword = $_POST['new_password'];
 
                 if ($this->user->newPassword()) {
