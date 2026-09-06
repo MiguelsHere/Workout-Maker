@@ -19,7 +19,7 @@ class WorkoutController
         if ($_SESSION['user_id']) {
             $this->workout->creatorId = (int) $_SESSION['user_id'];
 
-            if ($_POST) {
+            if (!empty($_POST['workout_name'])) {
                 $this->workout->workoutName = $_POST['workout_name'];
                 $this->workout->workoutDescription = $_POST['workout_description'];
                 $this->workout->timeMin = (int) $_POST['time_min'];

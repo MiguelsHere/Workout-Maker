@@ -22,7 +22,7 @@ class UserController
     public function register()
     {
         if (empty($_SESSION['user_id'])) {
-            if ($_POST) {
+            if (isset($_POST['user_name']) & isset($_SESSION['password'])) {
                 $this->user->userName = $_POST['user_name'];
                 $this->user->password = $_POST['password'];
 
@@ -44,7 +44,7 @@ class UserController
     public function login()
     {
         if (empty($_SESSION['user_id'])) {
-            if ($_POST) {
+            if (!empty($_POST['user_name']) & !empty($_SESSION['password'])) {
                 $this->user->userName = $_POST['user_name'];
                 $this->user->password = $_POST['password'];
 
@@ -62,6 +62,29 @@ class UserController
 
 
         include 'views/user/user_login.php';
+    }
+
+    public function newPassword()
+    {
+
+        if ($_SESSION['user_id']) {
+            $this->user->userId = (int) $_SESSION['user_id'];
+
+            if (!empty($_POST['password']) & !empty($_SESSION['new_password'])) {
+                $this->user->password = $_POST['password'];
+                $this->user->newPassword = $_POST['new_password'];
+
+                if ($this->user->newPassword()) {
+                    header("Location: index.php?action=new-password");
+                    exit;
+                }
+            }
+        } else {
+            header("Location: index.php?action=login");
+            exit;
+        }
+
+        include 'views/user/user_password.php';
     }
 
     public function update()
@@ -86,29 +109,6 @@ class UserController
         }
 
         include 'views/user/user_profile.php';
-    }
-
-    public function newPassword()
-    {
-
-        if ($_SESSION['user_id']) {
-            $this->user->userId = (int) $_SESSION['user_id'];
-
-            if ($_POST) {
-                $this->user->password = $_POST['password'];
-                $this->user->newPassword = $_POST['new_password'];
-
-                if ($this->user->newPassword()) {
-                    header("Location: index.php?action=new-password");
-                    exit;
-                }
-            }
-        } else {
-            header("Location: index.php?action=login");
-            exit;
-        }
-
-        include 'views/user/user_password.php';
     }
 
     public function signOut()
