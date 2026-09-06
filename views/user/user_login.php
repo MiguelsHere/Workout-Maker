@@ -19,17 +19,26 @@
         <a href="index.php?action=register" title="Ir para pagina de registo">Registar</a>
     </nav>
 
-    <main>
-        <form action="index.php?action=login" method="post">
-            <label>Nome de Utilisador:</label><br>
-            <input type="text" name="user_name" maxlength="50" autocomplete="username" required><br><br>
+    <?php if (empty($_SESSION['error'])): ?>
+        <main>
+            <form action="index.php?action=login" method="post">
+                <label>Nome de Utilisador:</label><br>
+                <input type="text" name="user_name" maxlength="50" autocomplete="username" required><br><br>
 
-            <label>Palavra-Passe:</label><br>
-            <input type="password" name="password" minlength="15" maxlength="64" autocomplete="current-password" required><br><br>
+                <label>Palavra-Passe:</label><br>
+                <input type="password" name="password" minlength="15" maxlength="64" autocomplete="current-password" required><br><br>
 
-            <button type="submit">Entrar</button>
-        </form>
-    </main>
+                <button type="submit">Entrar</button>
+            </form>
+        </main>
+    <?php else:
+        echo
+        '<main>
+        <p>' . htmlspecialchars($_SESSION['error']) . '</p>
+        </main>';
+        unset($_SESSION['error']);
+    ?>
+    <?php endif ?>
 
     <footer>
         <p>criado por <a href="https://github.com/MiguelsHere" target="_blank">Miguel Monteiro</a></p>

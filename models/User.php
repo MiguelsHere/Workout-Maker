@@ -55,26 +55,10 @@ class User
                 $_SESSION['user_id'] = $row['user_id'];
                 return true;
             }
-            return false;
         }
+
+        $_SESSION['error'] = "Erro, tente novamente.";
         return false;
-    }
-
-    public function update(): bool
-    {
-        $query = "UPDATE user SET user_description, birth_date, height_cm, weight_kg) VALUES(:user_description, :birth_date, :height_cm, :weight_kg) WHERE user_id = :user_id;";
-
-        $stmt = $this->conn->prepare($query);
-
-        $stmt->bindParam(":user_description", $this->userDescription);
-        $stmt->bindParam(":birth_date", $this->birthDate);
-        $stmt->bindParam(":height_cm", $this->heightCm);
-        $stmt->bindParam(":weight_kg", $this->weightKg);
-        $stmt->bindParam(":user_id", $this->userId);
-
-        $stmt->execute();
-
-        return true;
     }
 
     public function newPassword(): bool
@@ -102,9 +86,30 @@ class User
 
             $stmt->execute();
 
+            $_SESSION['success'] = "Palavra-passe substituida com sucesso.";
+
             return true;
         }
+
+        $_SESSION['error'] = "Erro, tente novamente.";
         return false;
+    }
+
+    public function update(): bool
+    {
+        $query = "UPDATE user SET user_description, birth_date, height_cm, weight_kg) VALUES(:user_description, :birth_date, :height_cm, :weight_kg) WHERE user_id = :user_id;";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(":user_description", $this->userDescription);
+        $stmt->bindParam(":birth_date", $this->birthDate);
+        $stmt->bindParam(":height_cm", $this->heightCm);
+        $stmt->bindParam(":weight_kg", $this->weightKg);
+        $stmt->bindParam(":user_id", $this->userId);
+
+        $stmt->execute();
+
+        return true;
     }
 
     public function signOut(): bool

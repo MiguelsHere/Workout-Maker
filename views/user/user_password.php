@@ -17,18 +17,27 @@
         <a href="index.php?action=sign-out">Sair</a>
     </nav>
 
-    <main>
-        <form action="index.php?action=new-password" method="post">
+    <?php if (empty($_SESSION['success'])): ?>
+        <main>
+            <form action="index.php?action=new-password" method="post">
 
-            <label>Palavra-passe:</label><br>
-            <input type="password" name="password" minlength="15" maxlength="64" autocomplete="current-password" required><br><br>
+                <label>Palavra-passe:</label><br>
+                <input type="password" name="password" minlength="15" maxlength="64" autocomplete="current-password" required><br><br>
 
-            <label>Nova Palavra-passe:</label><br>
-            <input type="password" name="new_password" minlength="15" maxlength="64" autocomplete="new-password">
+                <label>Nova Palavra-passe:</label><br>
+                <input type="password" name="new_password" minlength="15" maxlength="64" autocomplete="new-password" required>
 
-            <button type="submit">Substituir Palavra-passe</button>
-        </form>
-    </main>
+                <button type="submit">Substituir Palavra-passe</button>
+            </form>
+        </main>
+    <?php else:
+        echo
+        '<main>
+        <p>' . htmlspecialchars($_SESSION['success']) . '</p>
+        </main>';
+        unset($_SESSION['success']);
+    ?>
+    <?php endif ?>
 
     <footer>
         <p>criado por <a href="https://github.com/MiguelsHere" target="_blank">Miguel Monteiro</a></p>
