@@ -12,7 +12,6 @@
 
 <body>
 
-
     <nav>
         <a href="index.php?action=home" title="Ir para pagina inicial"><img src="images/logo.svg" alt='Workout Maker' width="220" height="60"></a>
         <a href="index.php?action=sign-out">Sair</a>
