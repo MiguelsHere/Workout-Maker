@@ -33,7 +33,7 @@
     <?php else:
         echo
         '<main>
-        <p>' . htmlspecialchars($_SESSION['success']) . '</p>
+        <p>' . $_SESSION['success'] . '</p>
         </main>';
         unset($_SESSION['success']);
     ?>

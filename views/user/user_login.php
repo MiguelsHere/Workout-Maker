@@ -34,7 +34,7 @@
     <?php else:
         echo
         '<main>
-        <p>' . htmlspecialchars($_SESSION['error']) . '</p>
+        <p>' . $_SESSION['error'] . '</p>
         </main>';
         unset($_SESSION['error']);
     ?>
