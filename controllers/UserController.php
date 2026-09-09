@@ -24,11 +24,11 @@ class UserController
         if ($_SESSION['user_id'] == 1) {
 
             if ($this->user->listAll()) {
-                $workouts = $this->user->listAll();
+                $users = $this->user->listAll();
             }
         } else {
             if ($this->user->listPublic()) {
-                $workouts = $this->user->listAll();
+                $users = $this->user->listAll();
             }
         }
 
