@@ -28,7 +28,7 @@ class UserController
             }
         } else {
             if ($this->user->listPublic()) {
-                $users = $this->user->listAll();
+                $users = $this->user->listPublic();
             }
         }
 
