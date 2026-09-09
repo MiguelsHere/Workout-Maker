@@ -10,8 +10,14 @@ $workoutController = new WorkoutController();
 $action = $_GET['action'] ?? 'home';
 
 switch ($action) {
+    case 'list-workout':
+        $workoutController->list();
+        break;
     case 'create':
         $workoutController->create();
+        break;
+    case 'list-user':
+        $userController->list();
         break;
     case 'new-password':
         $userController->newPassword();
