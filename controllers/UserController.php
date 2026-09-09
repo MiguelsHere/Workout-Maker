@@ -20,7 +20,7 @@ class UserController
         } else {
         }
 
-        include 'views/workout/user_list';
+        include 'views/user/user_list';
     }
 
     public function home(): void
