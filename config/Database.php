@@ -4,8 +4,8 @@ class Database
 {
     private $host = "localhost";
     private $db_name = "workout_db";
-    private $username = "admin_workout";
-    private $password = "123";
+    private $username = "root";
+    private $password = "";
     public $conn;
 
     public function getConnection()
