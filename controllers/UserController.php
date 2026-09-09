@@ -14,12 +14,12 @@ class UserController
         $this->user = new User($this->db);
     }
 
-    public function home()
+    public function home(): void
     {
         include_once 'views/home.php';
     }
 
-    public function register()
+    public function register(): void
     {
         if (empty($_SESSION['user_id'])) {
             if (isset($_POST['user_name']) & isset($_SESSION['password'])) {
@@ -41,7 +41,7 @@ class UserController
         include 'views/user/user_register.php';
     }
 
-    public function login()
+    public function login(): void
     {
         if (empty($_SESSION['user_id'])) {
             if (!empty($_POST['user_name']) & !empty($_SESSION['password'])) {
@@ -64,7 +64,7 @@ class UserController
         include 'views/user/user_login.php';
     }
 
-    public function newPassword()
+    public function newPassword(): void
     {
 
         if ($_SESSION['user_id']) {
@@ -87,7 +87,7 @@ class UserController
         include 'views/user/user_password.php';
     }
 
-    public function update()
+    public function update(): void
     {
         if ($_SESSION['user_id']) {
             $this->user->userId = (int) $_SESSION['user_id'];
@@ -111,7 +111,7 @@ class UserController
         include 'views/user/user_profile.php';
     }
 
-    public function signOut()
+    public function signOut(): void
     {
         if ($_SESSION['user_id']) {
             if ($this->user->signOut()) {

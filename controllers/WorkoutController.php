@@ -14,7 +14,7 @@ class WorkoutController
         $this->workout = new Workout($this->db);
     }
 
-    public function create()
+    public function create(): void
     {
         if ($_SESSION['user_id']) {
             $this->workout->creatorId = (int) $_SESSION['user_id'];
