@@ -16,8 +16,8 @@ class WorkoutController
 
     public function list(): void
     {
-        if ($_SESSION['user_id'] == 0) {
-            
+        if ($_SESSION['user_id'] == 1) {
+
         } else {
         }
 
