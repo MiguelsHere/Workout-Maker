@@ -22,14 +22,10 @@ class UserController
     public function list(): void
     {
         if ($_SESSION['user_id'] == 1) {
-
-            if ($this->user->listAll()) {
-                $users = $this->user->listAll();
-            }
+            $users = $this->user->listAll();
         } else {
-            if ($this->user->listPublic()) {
-                $users = $this->user->listPublic();
-            }
+
+            $users = $this->user->listPublic();
         }
 
         include 'views/user/user_list';
