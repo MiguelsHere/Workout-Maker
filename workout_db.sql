@@ -1,5 +1,5 @@
 CREATE TABLE `user` (
-  `user_id` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `user_id` bigint UNSIGNED NULL PRIMARY KEY AUTO_INCREMENT,
   `user_name` varchar(50) UNIQUE NOT NULL,
   `password_hash` varchar(255) NOT NULL,
   `user_description` text,
@@ -22,7 +22,7 @@ CREATE TABLE `workout` (
   `workout_description` text,
   `time_min` smallint UNSIGNED, 
   `is_public` boolean NOT NULL DEFAULT 0,
-  `creator_id` bigint UNSIGNED NOT NULL
+  `creator_id` bigint UNSIGNED NULL
 );
 
 CREATE TABLE `workout_exercise` (
@@ -63,7 +63,7 @@ ALTER TABLE `workout_exercise` ADD FOREIGN KEY (`exercise_id`) REFERENCES `exerc
 
 ALTER TABLE `workout_exercise` ADD FOREIGN KEY (`workout_id`) REFERENCES `workout` (`workout_id`);
 
-ALTER TABLE `workout` ADD FOREIGN KEY (`creator_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE; 
+ALTER TABLE `workout` ADD FOREIGN KEY (`creator_id`) REFERENCES `user` (`user_id`); 
 
 ALTER TABLE `user_workout` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE;
 
