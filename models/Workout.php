@@ -15,6 +15,27 @@ class Workout
         $this->conn = $db;
     }
 
+    public function listAll()
+    {
+
+        $query = "SELECT workout_name FROM workout;";
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function listPublic()
+    {
+        $query = "SELECT workout_name FROM workout WHERE is_public = 1;";
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function create(): bool
     {
         $query = "INSERT INTO workout(workout_name, workout_description, time_min, is_public, creator_id) VALUES(:workout_name, :workout_description, :time_min, :is_public, :creator_id);";

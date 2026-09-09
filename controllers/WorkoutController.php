@@ -17,8 +17,9 @@ class WorkoutController
     public function list(): void
     {
         if ($_SESSION['user_id'] == 1) {
-
+            $workouts = $this->workout->listAll();
         } else {
+            $workouts = $this->workout->listPublic();
         }
 
         include 'views/workout/workout_list';

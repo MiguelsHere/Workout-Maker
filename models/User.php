@@ -19,6 +19,27 @@ class User
         $this->conn = $db;
     }
 
+    public function listAll()
+    {
+
+        $query = "SELECT user_name FROM user;";
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function listPublic()
+    {
+        $query = "SELECT user_name FROM user WHERE is_public = 1;";
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function register(): bool
     {
         //Depois colocar query para ver ser username já existe

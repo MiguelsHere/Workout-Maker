@@ -14,18 +14,25 @@ class UserController
         $this->user = new User($this->db);
     }
 
-    public function list(): void
-    {
-        if ($_SESSION['user_id'] == 1) {
-        } else {
-        }
-
-        include 'views/user/user_list';
-    }
-
     public function home(): void
     {
         include_once 'views/home.php';
+    }
+
+    public function list(): void
+    {
+        if ($_SESSION['user_id'] == 1) {
+
+            if ($this->user->listAll()) {
+                $workouts = $this->user->listAll();
+            }
+        } else {
+            if ($this->user->listPublic()) {
+                $workouts = $this->user->listAll();
+            }
+        }
+
+        include 'views/user/user_list';
     }
 
     public function register(): void
