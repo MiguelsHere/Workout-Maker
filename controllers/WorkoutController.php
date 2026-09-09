@@ -14,6 +14,16 @@ class WorkoutController
         $this->workout = new Workout($this->db);
     }
 
+    public function list(): void
+    {
+        if ($_SESSION['user_id'] == 0) {
+            
+        } else {
+        }
+
+        include 'views/workout/workout_list';
+    }
+
     public function create(): void
     {
         if ($_SESSION['user_id']) {

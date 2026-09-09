@@ -14,6 +14,15 @@ class UserController
         $this->user = new User($this->db);
     }
 
+    public function list(): void
+    {
+        if ($_SESSION['user_id'] == 0) {
+        } else {
+        }
+
+        include 'views/workout/user_list';
+    }
+
     public function home(): void
     {
         include_once 'views/home.php';
