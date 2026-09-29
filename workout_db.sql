@@ -37,13 +37,14 @@ CREATE TABLE `exercise` (
 
 CREATE TABLE `set` (
   `set_id` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  `set_qt` tinyint UNSIGNED,
+  `reps` tinyint UNSIGNED,
   `set_time_sec` int UNSIGNED,
   `notes` text,
   `workout_id` bigint UNSIGNED NOT NULL,
   `exercise_id` bigint UNSIGNED NOT NULL,
-  FOREIGN KEY (`workout_id`) REFERENCES `workout` (`workout_id`),
-  FOREIGN KEY (`exercise_id`) REFERENCES `exercise` (`exercise_id`)
+  `set_number` tinyint UNSIGNED NOT NULL AUTO_INCREMENT,
+  FOREIGN KEY (`workout_id`) REFERENCES `workout` (`workout_id`) ON DELETE CASCADE,
+  FOREIGN KEY (`exercise_id`) REFERENCES `exercise` (`exercise_id`) ON DELETE CASCADE
 );
 
 CREATE TABLE `equipment` (
