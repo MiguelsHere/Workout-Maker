@@ -11,7 +11,11 @@ nav {
 }
 
 main {
-  margin: 70px;
+  padding: 10px;
+  margin: 80px;
+  background-color: white;
+  border-width: thin;
+  border-style: solid;
   text-align: center;
 }
 

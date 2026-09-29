@@ -4,7 +4,7 @@ CREATE TABLE `user` (
   `password_hash` varchar(255) NOT NULL,
   `user_description` text,
   `birth_date` date,
-  `height_cm` decimal(4,1) CHECK (height_cm > 0),
+  `height_cm` decimal(3) CHECK (height_cm > 0),
   `weight_kg` decimal(5,2) CHECK (weight_kg > 0),
   `is_public` boolean NOT NULL DEFAULT 0
 );

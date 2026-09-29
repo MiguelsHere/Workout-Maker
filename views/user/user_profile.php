@@ -26,10 +26,10 @@
             <input type="date" name="birth_date" autocomplete="bday"><br>
 
             <label>Altura:</label><br>
-            <input type="number" name="height_cm"><br>
+            <input type="number" name="height_cm" min="1" max="999"><span> Cm</span><br>
 
             <label>Peso:</label><br>
-            <input type="number" name="weight_kg"><br><br>
+            <input type="number" name="weight_kg" min="1" step="0.1"><span> Kg</span><br><br>
 
             <button type="submit">Atualizar</button>
         </form>
