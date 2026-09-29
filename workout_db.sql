@@ -66,5 +66,5 @@ CREATE TABLE `user_equipment` (
   `user_id` bigint UNSIGNED NOT NULL,
   `equipment_id` bigint UNSIGNED NOT NULL,
   FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
-  FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`equipment_id`)
+  FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`equipment_id`) ON DELETE CASCADE
 );
