@@ -26,7 +26,7 @@ CREATE TABLE `workout` (
   `time_min` smallint UNSIGNED, 
   `is_public` boolean NOT NULL DEFAULT 0,
   `creator_id` bigint UNSIGNED NULL,
-  FOREIGN KEY (`creator_id`) REFERENCES `user` (`user_id`),
+  FOREIGN KEY (`creator_id`) REFERENCES `user` (`user_id`)
 );
 
 CREATE TABLE `set` (
