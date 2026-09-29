@@ -34,7 +34,7 @@ class UserController
     public function register(): void
     {
         if (empty($_SESSION['user_id'])) {
-            if (isset($_POST['user_name']) & isset($_SESSION['password'])) {
+            if (!empty($_POST['user_name']) & !empty($_POST['password'])) {
                 $this->user->userName = $_POST['user_name'];
                 $this->user->password = $_POST['password'];
 
@@ -56,7 +56,7 @@ class UserController
     public function login(): void
     {
         if (empty($_SESSION['user_id'])) {
-            if (!empty($_POST['user_name']) & !empty($_SESSION['password'])) {
+            if (!empty($_POST['user_name']) & !empty($_POST['password'])) {
                 $this->user->userName = $_POST['user_name'];
                 $this->user->password = $_POST['password'];
 
@@ -82,7 +82,7 @@ class UserController
         if ($_SESSION['user_id']) {
             $this->user->userId = (int) $_SESSION['user_id'];
 
-            if (!empty($_POST['password']) & !empty($_SESSION['new_password'])) {
+            if (!empty($_POST['password']) & !empty($_POST['new_password'])) {
                 $this->user->password = $_POST['password'];
                 $this->user->newPassword = $_POST['new_password'];
 
