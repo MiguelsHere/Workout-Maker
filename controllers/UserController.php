@@ -28,7 +28,7 @@ class UserController
             $users = $this->user->listPublic();
         }
 
-        include 'views/user/user_list';
+        include 'views/user/user_list.php';
     }
 
     public function register(): void
