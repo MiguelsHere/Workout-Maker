@@ -14,7 +14,7 @@ CREATE TABLE `user_workout` (
   `user_id` bigint UNSIGNED NOT NULL,
   `workout_id` bigint UNSIGNED NOT NULL,
   `user_feedback` enum('liked','disliked','neither') NOT NULL DEFAULT 'neither',
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
   FOREIGN KEY (`workout_id`) REFERENCES `workout` (`workout_id`) ON DELETE CASCADE
 
 );
