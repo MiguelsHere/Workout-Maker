@@ -42,19 +42,25 @@ class User
 
     public function register(): bool
     {
-        //Depois colocar query para ver ser username já existe
+        try {
 
-        $hash = password_hash($this->password, PASSWORD_ARGON2ID);
+            $hash = password_hash($this->password, PASSWORD_ARGON2ID);
 
-        $query = "INSERT INTO user(user_name, password_hash) VALUES (:username, :hash);";
-        $stmt = $this->conn->prepare($query);
+            $query = "INSERT INTO user(user_name, password_hash) VALUES (:username, :hash);";
+            $stmt = $this->conn->prepare($query);
 
-        $stmt->bindParam(":username", $this->userName);
-        $stmt->bindParam(":hash", $hash);
+            $stmt->bindParam(":username", $this->userName);
+            $stmt->bindParam(":hash", $hash);
 
-        $stmt->execute();
+            $stmt->execute();
 
-        return true;
+            return true;
+        } catch (PDOException $e) {
+
+            $_SESSION['error'] = "Erro, nome de utilizador indisponivel.";
+
+            return false;
+        }
     }
 
     public function login(): bool
