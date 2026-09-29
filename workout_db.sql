@@ -5,7 +5,7 @@ CREATE TABLE `user` (
   `user_description` text,
   `birth_date` date,
   `height_cm` decimal(3) CHECK (height_cm > 0),
-  `weight_kg` decimal(5,2) CHECK (weight_kg > 0),
+  `weight_kg` decimal(4,1) CHECK (weight_kg > 0),
   `is_public` boolean NOT NULL DEFAULT 0
 );
 
