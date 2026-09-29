@@ -13,7 +13,10 @@ CREATE TABLE `user_workout` (
   `user_workout_id` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   `user_id` bigint UNSIGNED NOT NULL,
   `workout_id` bigint UNSIGNED NOT NULL,
-  `user_feedback` enum('liked','disliked','neither') NOT NULL DEFAULT 'neither'
+  `user_feedback` enum('liked','disliked','neither') NOT NULL DEFAULT 'neither',
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
+  FOREIGN KEY (`workout_id`) REFERENCES `workout` (`workout_id`) ON DELETE CASCADE
+
 );
 
 CREATE TABLE `workout` (
@@ -22,13 +25,19 @@ CREATE TABLE `workout` (
   `workout_description` text,
   `time_min` smallint UNSIGNED, 
   `is_public` boolean NOT NULL DEFAULT 0,
-  `creator_id` bigint UNSIGNED NULL
+  `creator_id` bigint UNSIGNED NULL,
+  FOREIGN KEY (`creator_id`) REFERENCES `user` (`user_id`),
 );
 
-CREATE TABLE `workout_exercise` (
-  `workout_exercise_id` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE `set` (
+  `set_id` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `set_qt` tinyint UNSIGNED,
+  `set_time_sec` int UNSIGNED,
+  `notes` text,
   `workout_id` bigint UNSIGNED NOT NULL,
-  `exercise_id` bigint UNSIGNED NOT NULL
+  `exercise_id` bigint UNSIGNED NOT NULL,
+  FOREIGN KEY (`workout_id`) REFERENCES `workout` (`workout_id`),
+  FOREIGN KEY (`exercise_id`) REFERENCES `exercise` (`exercise_id`)
 );
 
 CREATE TABLE `exercise` (
@@ -40,7 +49,9 @@ CREATE TABLE `exercise` (
 CREATE TABLE `exercise_equipment` (
   `exercise_equipment_id` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   `exercise_id` bigint UNSIGNED NOT NULL,
-  `equipment_id` bigint UNSIGNED NOT NULL
+  `equipment_id` bigint UNSIGNED NOT NULL,
+  FOREIGN KEY (`exercise_id`) REFERENCES `exercise` (`exercise_id`),
+  FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`equipment_id`)
 );
 
 CREATE TABLE `equipment` (
@@ -52,23 +63,7 @@ CREATE TABLE `equipment` (
 CREATE TABLE `user_equipment` (
   `user_equipment_id` bigint UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   `user_id` bigint UNSIGNED NOT NULL,
-  `equipment_id` bigint UNSIGNED NOT NULL
+  `equipment_id` bigint UNSIGNED NOT NULL,
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
+  FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`equipment_id`)
 );
-
-ALTER TABLE `exercise_equipment` ADD FOREIGN KEY (`exercise_id`) REFERENCES `exercise` (`exercise_id`);
-
-ALTER TABLE `exercise_equipment` ADD FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`equipment_id`);
-
-ALTER TABLE `workout_exercise` ADD FOREIGN KEY (`exercise_id`) REFERENCES `exercise` (`exercise_id`);
-
-ALTER TABLE `workout_exercise` ADD FOREIGN KEY (`workout_id`) REFERENCES `workout` (`workout_id`);
-
-ALTER TABLE `workout` ADD FOREIGN KEY (`creator_id`) REFERENCES `user` (`user_id`); 
-
-ALTER TABLE `user_workout` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE;
-
-ALTER TABLE `user_workout` ADD FOREIGN KEY (`workout_id`) REFERENCES `workout` (`workout_id`) ON DELETE CASCADE;
-
-ALTER TABLE `user_equipment` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE;
-
-ALTER TABLE `user_equipment` ADD FOREIGN KEY (`equipment_id`) REFERENCES `equipment` (`equipment_id`);
