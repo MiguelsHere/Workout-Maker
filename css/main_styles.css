@@ -1,29 +1,41 @@
 body {
   margin: 0;
+  background-color: #f4f1ec;
+  color: #222222;
 }
 
 nav {
   padding: 2px;
   background-color: red;
+  color: #ffffff;
   position: fixed;
   top: 0;
   width: 100%;
 }
 
+nav a {
+  color: #ffffff;
+}
+
 main {
   padding: 10px;
   margin: 80px;
-  border-width: thin;
-  border-style: solid;
+  background-color: #FFFFFF;
+  color: #222222;
+  border: 1px solid #D8D2C8;
   text-align: center;
 }
 
 footer {
   padding: 1px;
-  background-color: black;
-  color: white;
+  background-color: #1F1F1F;
+  color: #F5F5F5;
   text-align: center;
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+footer a {
+  color: #F5F5F5
 }
