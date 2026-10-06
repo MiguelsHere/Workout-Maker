@@ -135,11 +135,15 @@ class UserController
     public function delete(): void
     {
         if ($_SESSION['user_id']) {
+            $this->user->userId = (int) $_SESSION['user_id'];
             $this->user->password = $_POST['password'];
 
             if ($_POST) {
                 if ($this->user->delete()) {
                     header("Location: index.php");
+                    exit;
+                } else {
+                    header("Location: index.php?action=delete");
                     exit;
                 }
             }

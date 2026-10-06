@@ -44,7 +44,7 @@ class User
     {
         try {
 
-            $hash = password_hash($this->password, PASSWORD_ARGON2ID);
+            $hash = password_hash($this->password, PASSWORD_DEFAULT);
 
             $query = "INSERT INTO user(user_name, password_hash) VALUES (:username, :hash);";
             $stmt = $this->conn->prepare($query);
@@ -102,7 +102,7 @@ class User
 
         if (password_verify($this->password, $row['password_hash'])) {
 
-            $hash = password_hash($this->newPassword, PASSWORD_ARGON2ID);
+            $hash = password_hash($this->newPassword, PASSWORD_DEFAULT);
 
             $query = "UPDATE TABLE user SET password_hash = :new_password WHERE user_id = :user_id";
 
@@ -145,5 +145,40 @@ class User
         session_destroy();
 
         return true;
+    }
+
+    public function delete(): bool
+    {
+
+        $query = "SELECT user_id, password_hash FROM user WHERE user_name = :username;";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(":username", $this->userName);
+
+        $stmt->execute();
+
+        $row = $stmt->fetch();
+
+        if ($row) {
+            if (password_verify($this->password, $row['password_hash'])) {
+
+                $_SESSION = [];
+                session_destroy();
+
+                $query = "DELETE FROM user WHERE user_id = :user_id";
+
+                $stmt = $this->conn->prepare($query);
+
+                $stmt->bindParam(":user_id", $this->userId);
+
+                $stmt->execute();
+
+                return true;
+            }
+        }
+
+        $_SESSION['error'] = "Erro, tente novamente.";
+        return false;
     }
 }
