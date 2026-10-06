@@ -30,7 +30,7 @@ class WorkoutController
 
     public function create(): void
     {
-        if ($_SESSION['user_id']) {
+        if (!empty($_SESSION['user_id'])) {
             $this->workout->creatorId = (int) $_SESSION['user_id'];
 
             if (!empty($_POST['workout_name'])) {
@@ -55,7 +55,7 @@ class WorkoutController
 
     public function delete(): void
     {
-        if ($_SESSION['user_id']) {
+        if (!empty($_SESSION['user_id'])) {
             $this->workout->userId = (int) $_SESSION['user_id'];
             if (!empty($_POST['workout_id'])) {
 
