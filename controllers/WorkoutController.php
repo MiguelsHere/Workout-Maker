@@ -16,12 +16,16 @@ class WorkoutController
 
     public function list(): void
     {
-        if ($_SESSION['user_id'] == 1) {
-            $workouts = $this->workout->listAll();
+        if (!empty($_SESSION['user_id'])) {
+            if ($_SESSION['user_id'] == 1) {
+                $workouts = $this->workout->listAll();
+            } else {
+                $workouts = $this->workout->listPublic();
+            }
         } else {
-            $workouts = $this->workout->listPublic();
+            header("Location: index.php?action=login");
+            exit;
         }
-
         include 'views/workout/workout_list';
     }
 
@@ -35,6 +39,28 @@ class WorkoutController
                 $this->workout->workoutDescription = $_POST['workout_description'];
                 $this->workout->timeMin = (int) $_POST['time_min'];
                 $this->workout->isPublic = (int) $_POST['is_public'];
+            } else {
+                header("Location: index.php?action=create");
+                exit;
+            }
+        } else {
+            header("Location: index.php?action=login");
+            exit;
+        }
+
+        include 'views/workout/workout_create.php';
+    }
+
+    public function delete(): void
+    {
+        if ($_SESSION['user_id']) {
+
+            if (!empty($_POST['workout_id'])) {
+                $this->workout->workoutId = (int) $_SESSION['workout_id'];
+                $this->workout->workoutName = $_POST['workout_name'];
+            } else {
+                header("Location: index.php?action=workout_delete");
+                exit;
             }
         } else {
             header("Location: index.php");

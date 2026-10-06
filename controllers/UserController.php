@@ -24,7 +24,6 @@ class UserController
         if ($_SESSION['user_id'] == 1) {
             $users = $this->user->listAll();
         } else {
-
             $users = $this->user->listPublic();
         }
 
@@ -90,6 +89,8 @@ class UserController
                     header("Location: index.php?action=new-password");
                     exit;
                 }
+                header("Location: index.php?action=new-password");
+                exit;
             }
         } else {
             header("Location: index.php?action=login");
@@ -114,6 +115,8 @@ class UserController
                     header("Location: index.php?action=update");
                     exit;
                 }
+                header("Location: index.php?action=update");
+                exit;
             }
         } else {
             header("Location: index.php?action=login");
@@ -141,10 +144,9 @@ class UserController
                 if ($this->user->delete()) {
                     header("Location: index.php");
                     exit;
-                } else {
-                    header("Location: index.php?action=delete");
-                    exit;
                 }
+                header("Location: index.php?action=delete");
+                exit;
             }
         } else {
             header("Location: index.php");
