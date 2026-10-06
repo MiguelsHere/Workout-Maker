@@ -22,10 +22,9 @@ class WorkoutController
             } else {
                 $workouts = $this->workout->listPublic();
             }
-        } else {
-            header("Location: index.php?action=login");
-            exit;
         }
+        header("Location: index.php?action=login");
+
         include 'views/workout/workout_list.php';
     }
 
@@ -42,11 +41,7 @@ class WorkoutController
                 if ($this->workout->create()) {
                     header("Location: index.php?action=edit");
                     exit;
-                } else {
-                    header("Location: index.php?action=create");
-                    exit;
                 }
-            } else {
                 header("Location: index.php?action=create");
                 exit;
             }
@@ -69,11 +64,7 @@ class WorkoutController
                 if ($this->workout->delete()) {
                     header("Location: index.php?action=workout-user");
                     exit;
-                } else {
-                    header("Location: index.php?action=workout-delete");
-                    exit;
                 }
-            } else {
                 header("Location: index.php?action=workout-delete");
                 exit;
             }
