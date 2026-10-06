@@ -126,8 +126,6 @@ class UserController
         include 'views/user/user_profile.php';
     }
 
-
-
     public function delete(): void
     {
         if ($_SESSION['user_id']) {
