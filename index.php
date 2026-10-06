@@ -16,6 +16,8 @@ switch ($action) {
     case 'create':
         $workoutController->create();
         break;
+    case 'delete-workout':
+        $workoutController->delete();
     case 'list-user':
         $userController->list();
         break;
@@ -33,6 +35,9 @@ switch ($action) {
         break;
     case 'sign-out':
         $userController->signOut();
+        break;
+    case 'delete-user':
+        $userController->delete();
         break;
     default:
     case 'home':
