@@ -26,7 +26,7 @@ class WorkoutController
             header("Location: index.php?action=login");
             exit;
         }
-        include 'views/workout/workout_list';
+        include 'views/workout/workout_list.php';
     }
 
     public function create(): void
@@ -42,9 +42,10 @@ class WorkoutController
                 if ($this->workout->create()) {
                     header("Location: index.php?action=edit");
                     exit;
+                } else {
+                    header("Location: index.php?action=create");
+                    exit;
                 }
-                header("Location: index.php?action=create");
-                exit;
             } else {
                 header("Location: index.php?action=create");
                 exit;
@@ -68,11 +69,12 @@ class WorkoutController
                 if ($this->workout->delete()) {
                     header("Location: index.php?action=workout-user");
                     exit;
+                } else {
+                    header("Location: index.php?action=workout-delete");
+                    exit;
                 }
-                header("Location: index.php?action=workout-delete");
-                exit;
             } else {
-                header("Location: index.php?action=workout_delete");
+                header("Location: index.php?action=workout-delete");
                 exit;
             }
         } else {
@@ -80,6 +82,6 @@ class WorkoutController
             exit;
         }
 
-        include 'views/workout/workout_create.php';
+        include 'views/workout/workout_delete.php';
     }
 }
