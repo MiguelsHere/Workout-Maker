@@ -78,7 +78,7 @@ class UserController
     public function newPassword(): void
     {
 
-        if ($_SESSION['user_id']) {
+        if (!empty($_SESSION['user_id'])) {
             $this->user->userId = (int) $_SESSION['user_id'];
 
             if (!empty($_POST['password']) & !empty($_POST['new_password'])) {
@@ -102,7 +102,7 @@ class UserController
 
     public function update(): void
     {
-        if ($_SESSION['user_id']) {
+        if (!empty($_SESSION['user_id'])) {
             $this->user->userId = (int) $_SESSION['user_id'];
 
             if ($_POST) {
@@ -128,7 +128,7 @@ class UserController
 
     public function delete(): void
     {
-        if ($_SESSION['user_id']) {
+        if (!empty($_SESSION['user_id'])) {
             $this->user->userId = (int) $_SESSION['user_id'];
             if ($_POST) {
                 $this->user->password = $_POST['password'];
@@ -149,7 +149,7 @@ class UserController
 
     public function signOut(): void
     {
-        if ($_SESSION['user_id']) {
+        if (!empty($_SESSION['user_id'])) {
             if ($this->user->signOut()) {
                 header("Location: index.php");
             }
