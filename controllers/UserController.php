@@ -60,7 +60,7 @@ class UserController
                 $this->user->password = $_POST['password'];
 
                 if ($this->user->login()) {
-                    header("Location: index.php?action=update");
+                    header("Location: index.php?action=home");
                     exit;
                 }
                 header("Location: index.php?action=login");
