@@ -57,7 +57,7 @@ class Workout
             return true;
         } catch (PDOException $e) {
 
-            $_SESSION['error'] = "Erro, tente novamente.";
+            $_SESSION['alert'] = "Erro, tente novamente.";
 
             return false;
         }
@@ -79,7 +79,7 @@ class Workout
             return true;
         } catch (PDOException $e) {
 
-            $_SESSION['error'] = "Erro, tente novamente.";
+            $_SESSION['alert'] = "Erro, tente novamente.";
 
             return false;
         }

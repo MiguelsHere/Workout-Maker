@@ -57,7 +57,7 @@ class User
             return true;
         } catch (PDOException $e) {
 
-            $_SESSION['error'] = "Erro, nome de utilizador indisponivel.";
+            $_SESSION['alert'] = "Erro, nome de utilizador indisponivel.";
             return false;
         }
     }
@@ -82,10 +82,10 @@ class User
                     return true;
                 }
             }
-            $_SESSION['error'] = "Erro, tente novamente.";
+            $_SESSION['alert'] = "Erro, tente novamente.";
             return false;
         } catch (PDOException $e) {
-            $_SESSION['error'] = "Erro, tente novamente.";
+            $_SESSION['alert'] = "Erro, tente novamente.";
             return false;
         }
     }
@@ -116,14 +116,14 @@ class User
 
                 $stmt->execute();
 
-                $_SESSION['success'] = "Palavra-passe substituida com sucesso.";
+                $_SESSION['alert'] = "Palavra-passe substituida com sucesso.";
 
                 return true;
             }
-            $_SESSION['error'] = "Erro, tente novamente.";
+            $_SESSION['alert'] = "Erro, tente novamente.";
             return false;
         } catch (PDOException $e) {
-            $_SESSION['error'] = "Erro, tente novamente.";
+            $_SESSION['alert'] = "Erro, tente novamente.";
             return false;
         }
     }
@@ -145,7 +145,7 @@ class User
 
             return true;
         } catch (PDOException $e) {
-            $_SESSION['error'] = "Erro, tente novamente.";
+            $_SESSION['alert'] = "Erro, tente novamente.";
             return false;
         }
     }
@@ -182,10 +182,10 @@ class User
                     return true;
                 }
             }
-            $_SESSION['error'] = "Erro, tente novamente.";
+            $_SESSION['alert'] = "Erro, tente novamente.";
             return false;
         } catch (PDOException $e) {
-            $_SESSION['error'] = "Erro, tente novamente.";
+            $_SESSION['alert'] = "Erro, tente novamente.";
             return false;
         }
     }
