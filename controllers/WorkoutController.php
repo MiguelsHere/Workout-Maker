@@ -60,8 +60,9 @@ class WorkoutController
     public function delete(): void
     {
         if ($_SESSION['user_id']) {
-
+            $this->workout->userId = (int) $_SESSION['user_id'];
             if (!empty($_POST['workout_id'])) {
+
                 $this->workout->workoutId = (int) $_SESSION['workout_id'];
                 $this->workout->workoutName = $_POST['workout_name'];
                 if ($this->workout->delete()) {
