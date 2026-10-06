@@ -33,11 +33,12 @@ switch ($action) {
     case 'update':
         $userController->update();
         break;
-    case 'sign-out':
-        $userController->signOut();
-        break;
+
     case 'delete-user':
         $userController->delete();
+        break;
+    case 'sign-out':
+        $userController->signOut();
         break;
     default:
     case 'home':
