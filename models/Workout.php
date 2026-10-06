@@ -9,6 +9,7 @@ class Workout
     public $timeMin;
     public $isPublic;
     public $creatorId;
+    public $workoutId;
 
     public function __construct($db)
     {
@@ -38,18 +39,25 @@ class Workout
 
     public function create(): bool
     {
-        $query = "INSERT INTO workout(workout_name, workout_description, time_min, is_public, creator_id) VALUES(:workout_name, :workout_description, :time_min, :is_public, :creator_id);";
+        try {
+            $query = "INSERT INTO workout(workout_name, workout_description, time_min, is_public, creator_id) VALUES(:workout_name, :workout_description, :time_min, :is_public, :creator_id);";
 
-        $stmt = $this->conn->prepare($query);
+            $stmt = $this->conn->prepare($query);
 
-        $stmt->bindParam(":workout_name", $this->workoutName);
-        $stmt->bindParam(":workout_description", $this->workoutDescription);
-        $stmt->bindParam(":time_min", $this->timeMin);
-        $stmt->bindParam(":is_public", $this->isPublic);
-        $stmt->bindParam(":creator_id", $this->creatorId);
+            $stmt->bindParam(":workout_name", $this->workoutName);
+            $stmt->bindParam(":workout_description", $this->workoutDescription);
+            $stmt->bindParam(":time_min", $this->timeMin);
+            $stmt->bindParam(":is_public", $this->isPublic);
+            $stmt->bindParam(":creator_id", $this->creatorId);
 
-        $stmt->execute();
+            $stmt->execute();
 
-        return true;
+            return true;
+        } catch (PDOException $e) {
+
+            $_SESSION['error'] = "Erro, tente novamente.";
+
+            return false;
+        }
     }
 }
