@@ -107,7 +107,7 @@ class User
 
                 $hash = password_hash($this->newPassword, PASSWORD_DEFAULT);
 
-                $query = "UPDATE TABLE user SET password_hash = :new_password WHERE user_id = :user_id";
+                $query = "UPDATE user SET password_hash = :new_password WHERE user_id = :user_id";
 
                 $stmt = $this->conn->prepare($query);
 
@@ -131,7 +131,7 @@ class User
     public function update(): bool
     {
         try {
-            $query = "UPDATE user SET user_description, birth_date, height_cm, weight_kg) VALUES(:user_description, :birth_date, :height_cm, :weight_kg) WHERE user_id = :user_id;";
+            $query = "UPDATE user SET user_description =:user_description, birth_date=:birth_date, height_cm =:height_cm , weight_kg = :weight_kg) WHERE user_id = :user_id;";
 
             $stmt = $this->conn->prepare($query);
 
@@ -155,11 +155,11 @@ class User
     public function delete(): bool
     {
         try {
-            $query = "SELECT user_id, password_hash FROM user WHERE user_name = :username;";
+            $query = "SELECT user_id, password_hash FROM user WHERE user_id = :user_id;";
 
             $stmt = $this->conn->prepare($query);
 
-            $stmt->bindParam(":username", $this->userName);
+            $stmt->bindParam(":user_id", $this->userId);
 
             $stmt->execute();
 
@@ -168,9 +168,6 @@ class User
             if ($row) {
                 if (password_verify($this->password, $row['password_hash'])) {
 
-                    $_SESSION = [];
-                    session_destroy();
-
                     $query = "DELETE FROM user WHERE user_id = :user_id";
 
                     $stmt = $this->conn->prepare($query);
@@ -178,6 +175,9 @@ class User
                     $stmt->bindParam(":user_id", $this->userId);
 
                     $stmt->execute();
+                    
+                    $_SESSION = [];
+                    session_destroy();
 
                     return true;
                 }
@@ -188,8 +188,8 @@ class User
             $_SESSION['error'] = "Erro, tente novamente.";
             return false;
         }
-    }    
-    
+    }
+
     public function signOut(): bool
     {
         $_SESSION = [];
