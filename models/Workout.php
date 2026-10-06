@@ -11,6 +11,8 @@ class Workout
     public $creatorId;
     public $workoutId;
 
+    public $userId;
+
     public function __construct($db)
     {
         $this->conn = $db;
@@ -49,6 +51,28 @@ class Workout
             $stmt->bindParam(":time_min", $this->timeMin);
             $stmt->bindParam(":is_public", $this->isPublic);
             $stmt->bindParam(":creator_id", $this->creatorId);
+
+            $stmt->execute();
+
+            return true;
+        } catch (PDOException $e) {
+
+            $_SESSION['error'] = "Erro, tente novamente.";
+
+            return false;
+        }
+    }
+    
+    public function delete(): bool
+    {
+        try {
+            $query = "DELETE FROM user_workout WHERE workout_id = :workout_id AND user_id = :user_id";
+
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindParam(":workout_id", $this->workoutId);
+
+            $stmt->bindParam(":user_id", $this->userId);
 
             $stmt->execute();
 

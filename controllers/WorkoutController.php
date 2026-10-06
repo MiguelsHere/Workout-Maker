@@ -39,6 +39,12 @@ class WorkoutController
                 $this->workout->workoutDescription = $_POST['workout_description'];
                 $this->workout->timeMin = (int) $_POST['time_min'];
                 $this->workout->isPublic = (int) $_POST['is_public'];
+                if ($this->workout->create()) {
+                    header("Location: index.php?action=edit");
+                    exit;
+                }
+                header("Location: index.php?action=create");
+                exit;
             } else {
                 header("Location: index.php?action=create");
                 exit;
@@ -58,6 +64,12 @@ class WorkoutController
             if (!empty($_POST['workout_id'])) {
                 $this->workout->workoutId = (int) $_SESSION['workout_id'];
                 $this->workout->workoutName = $_POST['workout_name'];
+                if ($this->workout->delete()) {
+                    header("Location: index.php?action=workout-user");
+                    exit;
+                }
+                header("Location: index.php?action=workout-delete");
+                exit;
             } else {
                 header("Location: index.php?action=workout_delete");
                 exit;
