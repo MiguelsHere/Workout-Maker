@@ -21,7 +21,6 @@ class User
 
     public function listAll()
     {
-
         $query = "SELECT user_name FROM user;";
         $stmt = $this->conn->prepare($query);
 
@@ -43,7 +42,6 @@ class User
     public function register(): bool
     {
         try {
-
             $hash = password_hash($this->password, PASSWORD_DEFAULT);
 
             $query = "INSERT INTO user(user_name, password_hash) VALUES (:username, :hash);";
@@ -82,9 +80,11 @@ class User
                     return true;
                 }
             }
+
             $_SESSION['alert'] = "Erro, tente novamente.";
             return false;
         } catch (PDOException $e) {
+
             $_SESSION['alert'] = "Erro, tente novamente.";
             return false;
         }
@@ -120,9 +120,11 @@ class User
 
                 return true;
             }
+
             $_SESSION['alert'] = "Erro, tente novamente.";
             return false;
         } catch (PDOException $e) {
+
             $_SESSION['alert'] = "Erro, tente novamente.";
             return false;
         }
@@ -145,6 +147,7 @@ class User
 
             return true;
         } catch (PDOException $e) {
+
             $_SESSION['alert'] = "Erro, tente novamente.";
             return false;
         }
@@ -182,9 +185,11 @@ class User
                     return true;
                 }
             }
+
             $_SESSION['alert'] = "Erro, tente novamente.";
             return false;
         } catch (PDOException $e) {
+            
             $_SESSION['alert'] = "Erro, tente novamente.";
             return false;
         }

@@ -10,6 +10,10 @@ class Workout
     public $isPublic;
     public $creatorId;
     public $workoutId;
+    public $reps;
+    public $setTimeSec;
+    public $notes;
+    public $exerciseId;
 
     public $userId;
 
@@ -58,11 +62,35 @@ class Workout
         } catch (PDOException $e) {
 
             $_SESSION['alert'] = "Erro, tente novamente.";
-
             return false;
         }
     }
-    
+
+    public function createSet(): bool
+    {
+        try {
+            $query = "INSERT INTO `set`(reps, set_time_sec, notes, workout_id, exercise_id) VALUES(:reps, :set_time_sec, :notes, :workout_id, :exercise_id);";
+
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindParam(":reps", $this->reps);
+
+            $stmt->bindParam(":set_time_sec", $this->setTimeSec);
+
+            $stmt->bindParam(":notes", $this->notes);
+
+            $stmt->bindParam(":workout_id", $this->exerciseId);
+
+            $stmt->execute();
+
+            return true;
+        } catch (PDOException $e) {
+
+            $_SESSION['alert'] = "Erro, tente novamente.";
+            return false;
+        }
+    }
+
     public function delete(): bool
     {
         try {
@@ -80,7 +108,6 @@ class Workout
         } catch (PDOException $e) {
 
             $_SESSION['alert'] = "Erro, tente novamente.";
-
             return false;
         }
     }
