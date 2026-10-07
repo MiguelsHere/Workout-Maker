@@ -90,9 +90,36 @@ class Workout
         }
     }
 
-    public function editSet(): bool {}
+    public function editSet(): bool
+    {
+        try {
 
-    public function deleteSet(): bool {}
+            return true;
+        } catch (PDOException $e) {
+
+            $_SESSION['alert'] = "Erro, tente novamente.";
+            return false;
+        }
+    }
+
+    public function deleteSet(): bool
+    {
+        try {
+            $query = "DELETE FROM set WHERE set_id = :set_id";
+
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindParam(":set_id",$this->setId);
+
+            $stmt->execute();
+
+            return true;
+        } catch (PDOException $e) {
+
+            $_SESSION['alert'] = "Erro, tente novamente.";
+            return false;
+        }
+    }
 
     public function delete(): bool
     {
