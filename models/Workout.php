@@ -111,7 +111,7 @@ class Workout
         }
     }
 
-    public function editSet(): bool
+    public function updateSet(): bool
     {
         try {
             $query = "UPDATE `set` exercise_id = :exercise_id, reps = :reps, set_time_sec = :set_time_sec, notes = :notes, set_number = :set_number WHERE set_id = :set_id ";
