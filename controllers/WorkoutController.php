@@ -77,6 +77,32 @@ class WorkoutController
         include 'views/workout/workout_edit.php';
     }
 
+    public function editSet(): void
+    {
+        if (!empty($_SESSION['user_id'])) {
+            if (!empty($_POST['set_id']) && !empty($_POST['exercise_id'])) {
+
+                $this->workout->setId = (int) $_POST['set_id'];
+                $this->workout->exerciseId = (int) $_POST['exercise_id'];
+                $this->workout->reps = (int) $_POST['reps'];
+                $this->workout->setTimeSec = (int) $_POST['set_time_sec'];
+                $this->workout->notes = $_POST['notes'];
+                if ($this->workout->editSet()) {
+                    header("Location: index.php?action=edit");
+                    exit;
+                }
+                header("Location: index.php?action=edit");
+                exit;
+            }
+        } else {
+            header("Location: index.php?action=login");
+            exit;
+        }
+
+
+        include 'views/workout/workout_edit.php';
+    }
+
     public function deleteSet(): void
     {
         if (!empty($_SESSION['user_id'])) {
