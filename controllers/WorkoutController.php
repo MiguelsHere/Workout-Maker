@@ -53,6 +53,30 @@ class WorkoutController
         include 'views/workout/workout_create.php';
     }
 
+    public function createSet(): void
+    {
+        if (!empty($_SESSION['user_id'])) {
+            if (!empty($_POST['exercise_id'])) {
+
+                $this->workout->exerciseId = (int) $_POST['exercise_id'];
+                $this->workout->reps = (int) $_POST['reps'];
+                $this->workout->setTimeSec = (int) $_POST['set-time-sec'];
+                $this->workout->notes = $_POST['notes'];
+                if ($this->workout->createSet()) {
+                    header("Location: index.php?action=edit");
+                    exit;
+                }
+                header("Location: index.php?action=edit");
+                exit;
+            }
+        } else {
+            header("Location: index.php?action=login");
+            exit;
+        }
+
+        include 'views/workout/workout_edit.php';
+    }
+
     public function delete(): void
     {
         if (!empty($_SESSION['user_id'])) {
