@@ -106,8 +106,7 @@ class WorkoutController
     public function deleteSet(): void
     {
         if (!empty($_SESSION['user_id'])) {
-            if (!empty($_POST['workout_id']) && !empty($_POST['set_id'])) {
-                $this->workout->workoutId = (int) $_POST['workout_id'];
+            if (!empty($_POST['set_id'])) {
                 $this->workout->setId = (int) $_POST['set_id'];
                 if ($this->workout->deleteSet()) {
                     header("Location: index.php?action=edit");

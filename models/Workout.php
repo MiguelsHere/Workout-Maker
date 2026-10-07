@@ -105,12 +105,11 @@ class Workout
     public function deleteSet(): bool
     {
         try {
-            $query = "DELETE FROM set WHERE set_id = :set_id and workout_id = :workout_id";
+            $query = "DELETE FROM set WHERE set_id = :set_id";
 
             $stmt = $this->conn->prepare($query);
 
             $stmt->bindParam(":set_id",$this->setId);
-            $stmt->bindParam(":workout_id",$this->workoutId);
 
             $stmt->execute();
 
