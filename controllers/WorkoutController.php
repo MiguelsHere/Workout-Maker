@@ -80,8 +80,9 @@ class WorkoutController
     public function editSet(): void
     {
         if (!empty($_SESSION['user_id'])) {
-            if (!empty($_POST['set_id']) && !empty($_POST['exercise_id'])) {
-
+            if (!empty($_POST['workout_id']) && !empty($_POST['set_id']) && !empty($_POST['exercise_id'])) {
+                
+                $this->workout->workoutId = (int) $_POST['workout_id'];
                 $this->workout->setId = (int) $_POST['set_id'];
                 $this->workout->exerciseId = (int) $_POST['exercise_id'];
                 $this->workout->reps = (int) $_POST['reps'];
