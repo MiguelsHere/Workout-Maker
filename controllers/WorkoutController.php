@@ -73,7 +73,7 @@ class WorkoutController
             exit;
         }
 
-        include 'views/workout/workout_create.php';
+        include 'views/workout/workout_edit.php';
     }
 
 
@@ -97,7 +97,7 @@ class WorkoutController
             exit;
         }
 
-        include 'views/workout/workout_delete.php';
+        include 'views/workout/workout_edit.php';
     }
 
     public function createSet(): void
