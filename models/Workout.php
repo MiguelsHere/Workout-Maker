@@ -17,6 +17,7 @@ class Workout
     public $setTimeSec;
     public $notes;
     public $exerciseId;
+    public $setNumber;
     public $setId;
 
     public function __construct($db)
@@ -68,6 +69,26 @@ class Workout
         }
     }
 
+    public function delete(): bool
+    {
+        try {
+            $query = "DELETE FROM user_workout WHERE workout_id = :workout_id AND user_id = :user_id";
+
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindParam(":workout_id", $this->workoutId);
+            $stmt->bindParam(":user_id", $this->userId);
+
+            $stmt->execute();
+
+            return true;
+        } catch (PDOException $e) {
+
+            $_SESSION['alert'] = "Erro, tente novamente.";
+            return false;
+        }
+    }
+
     public function createSet(): bool
     {
         try {
@@ -93,6 +114,18 @@ class Workout
     public function editSet(): bool
     {
         try {
+            $query = "UPDATE set exercise_id = :exercise_id, reps=:reps, set_time_sec = :set_time_sec, notes=:notes, set_number = :set_number WHERE workout_id = :workout_id";
+
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindParam(":exercise_id", $this->exerciseId);
+            $stmt->bindParam(":reps", $this->reps);
+            $stmt->bindParam(":set_time_sec", $this->setTimeSec);
+            $stmt->bindParam(":notes", $this->notes);
+            $stmt->bindParam(":setNumber", $this->setNumber);
+            $stmt->bindParam(":workout_id",  $this->workoutId);
+
+            $stmt->execute();
 
             return true;
         } catch (PDOException $e) {
@@ -109,27 +142,7 @@ class Workout
 
             $stmt = $this->conn->prepare($query);
 
-            $stmt->bindParam(":set_id",$this->setId);
-
-            $stmt->execute();
-
-            return true;
-        } catch (PDOException $e) {
-
-            $_SESSION['alert'] = "Erro, tente novamente.";
-            return false;
-        }
-    }
-
-    public function delete(): bool
-    {
-        try {
-            $query = "DELETE FROM user_workout WHERE workout_id = :workout_id AND user_id = :user_id";
-
-            $stmt = $this->conn->prepare($query);
-
-            $stmt->bindParam(":workout_id", $this->workoutId);
-            $stmt->bindParam(":user_id", $this->userId);
+            $stmt->bindParam(":set_id", $this->setId);
 
             $stmt->execute();
 
