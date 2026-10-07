@@ -114,7 +114,7 @@ class Workout
     public function editSet(): bool
     {
         try {
-            $query = "UPDATE set exercise_id = :exercise_id, reps=:reps, set_time_sec = :set_time_sec, notes=:notes, set_number = :set_number WHERE workout_id = :workout_id";
+            $query = "UPDATE `set` exercise_id = :exercise_id, reps=:reps, set_time_sec = :set_time_sec, notes=:notes, set_number = :set_number WHERE workout_id = :workout_id";
 
             $stmt = $this->conn->prepare($query);
 
@@ -138,7 +138,7 @@ class Workout
     public function deleteSet(): bool
     {
         try {
-            $query = "DELETE FROM set WHERE set_id = :set_id";
+            $query = "DELETE FROM `set` WHERE set_id = :set_id";
 
             $stmt = $this->conn->prepare($query);
 
