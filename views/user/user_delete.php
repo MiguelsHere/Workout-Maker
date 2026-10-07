@@ -7,7 +7,7 @@
     <meta name="description" content="O Workout Maker dá lhe todos os essencias para criar workouts efetivos!">
     <link rel="stylesheet" href="css/main_styles.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <title>Workout Maker: Apagar Workout</title>
+    <title>Workout Maker: Apagar Utilisador</title>
 </head>
 
 <body>
