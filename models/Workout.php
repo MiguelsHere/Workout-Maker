@@ -114,7 +114,7 @@ class Workout
     public function editSet(): bool
     {
         try {
-            $query = "UPDATE `set` exercise_id = :exercise_id, reps=:reps, set_time_sec = :set_time_sec, notes=:notes, set_number = :set_number WHERE workout_id = :workout_id";
+            $query = "UPDATE `set` exercise_id = :exercise_id, reps = :reps, set_time_sec = :set_time_sec, notes = :notes, set_number = :set_number WHERE set_id = :set_id ";
 
             $stmt = $this->conn->prepare($query);
 
@@ -123,7 +123,7 @@ class Workout
             $stmt->bindParam(":set_time_sec", $this->setTimeSec);
             $stmt->bindParam(":notes", $this->notes);
             $stmt->bindParam(":setNumber", $this->setNumber);
-            $stmt->bindParam(":workout_id",  $this->workoutId);
+            $stmt->bindParam(":set_id",  $this->setId);
 
             $stmt->execute();
 
