@@ -10,12 +10,14 @@ class Workout
     public $isPublic;
     public $creatorId;
     public $workoutId;
+
+    public $userId;
+
     public $reps;
     public $setTimeSec;
     public $notes;
     public $exerciseId;
-
-    public $userId;
+    public $setId;
 
     public function __construct($db)
     {
@@ -74,11 +76,8 @@ class Workout
             $stmt = $this->conn->prepare($query);
 
             $stmt->bindParam(":reps", $this->reps);
-
             $stmt->bindParam(":set_time_sec", $this->setTimeSec);
-
             $stmt->bindParam(":notes", $this->notes);
-
             $stmt->bindParam(":workout_id", $this->exerciseId);
 
             $stmt->execute();
@@ -91,6 +90,10 @@ class Workout
         }
     }
 
+    public function editSet(): bool {}
+
+    public function deleteSet(): bool {}
+
     public function delete(): bool
     {
         try {
@@ -99,7 +102,6 @@ class Workout
             $stmt = $this->conn->prepare($query);
 
             $stmt->bindParam(":workout_id", $this->workoutId);
-
             $stmt->bindParam(":user_id", $this->userId);
 
             $stmt->execute();
